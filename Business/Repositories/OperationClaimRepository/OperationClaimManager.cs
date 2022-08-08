@@ -20,7 +20,7 @@ namespace Business.Repositories.OperationClaimRepository
             _operationClaimDal = operationClaimDal;
         }
 
-        //[SecuredAspect()]
+        [SecuredAspect()]
         [ValidationAspect(typeof(OperationClaimValidator))]
         [RemoveCacheAspect("IOperationClaimService.Get")]
         public async Task<IResult> Add(OperationClaim operationClaim)
@@ -58,7 +58,7 @@ namespace Business.Repositories.OperationClaimRepository
             return new SuccessResult(OperationClaimMessages.Deleted);
         }
 
-        //[CacheAspect()]
+        [CacheAspect()]
         [PerformanceAspect()]
         public async Task<IDataResult<List<OperationClaim>>> GetList()
         {

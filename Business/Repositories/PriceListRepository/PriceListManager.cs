@@ -26,7 +26,7 @@ namespace Business.Repositories.PriceListRepository
             _priceListDal = priceListDal;
         }
 
-        // [SecuredAspect()]
+        [SecuredAspect()]
         [ValidationAspect(typeof(PriceListValidator))]
         [RemoveCacheAspect("IPriceListService.Get")]
 
@@ -55,7 +55,7 @@ namespace Business.Repositories.PriceListRepository
             return new SuccessResult(PriceListMessages.Deleted);
         }
 
-        //[SecuredAspect()]
+        [SecuredAspect()]
         [CacheAspect()]
         [PerformanceAspect()]
         public async Task<IDataResult<List<PriceList>>> GetList()
@@ -63,7 +63,7 @@ namespace Business.Repositories.PriceListRepository
             return new SuccessDataResult<List<PriceList>>(await _priceListDal.GetAll());
         }
 
-        //[SecuredAspect()]
+        [SecuredAspect()]
         public async Task<IDataResult<PriceList>> GetById(int id)
         {
             return new SuccessDataResult<PriceList>(await _priceListDal.Get(p => p.Id == id));
